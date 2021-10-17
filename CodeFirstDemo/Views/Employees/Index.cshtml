@@ -13,22 +13,22 @@
 <table class="table">
     <thead>
         <tr>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.EmployeeName)
                 </th>
-                <th>
+                <th scope="col">
                     @Html.DisplayNameFor(model => model.EmployeeAge)
                 </th>
-            <th>
+                <th scope="col">
                 @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th></th>
+                </th>
+                <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td >
                 @Html.DisplayFor(modelItem => item.EmployeeName)
             </td>
             <td>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace CodeFirstDemo.Models
 {
@@ -21,6 +22,8 @@ namespace CodeFirstDemo.Models
     public class Employee
     {
         public int EmployeeId { get; set; }
+        [Required]
+        [StringLength(8, ErrorMessage = "Name length can't be more than 8.")]
         public string EmployeeName { get; set; }
         public int EmployeeAge { get; set; }
 

@@ -30,7 +30,7 @@ namespace CodeFirstDemo.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DepartmentId = table.Column<int>(nullable: false),
                     EmployeeAge = table.Column<int>(nullable: false),
-                    EmployeeName = table.Column<string>(nullable: true)
+                    EmployeeName = table.Column<string>(maxLength: 8, nullable: false)
                 },
                 constraints: table =>
                 {

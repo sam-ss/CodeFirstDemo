@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CodeFirstDemo.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodeFirstDemo
 {
@@ -25,8 +27,15 @@ namespace CodeFirstDemo
         {
             services.AddMvc();
 
-            var connection = @"Server=XIPLRAC050;Database=CodeFirstCodeDb;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=XIPLRAC050;Database=CodeFirstCodeDb1;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<EmployeeContext>(options => options.UseSqlServer(connection));
+
+            services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", options => { });
+
+            services.AddAuthorization(options=>
+            {
+                options.AddPolicy("BasicAuthentication", new AuthorizationPolicyBuilder("BasicAuthentication").RequireAuthenticatedUser().Build());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -43,6 +43,7 @@ namespace CodeFirstDemo.Controllers
         }
 
         // GET: Departments/Create
+        [BasicAuthorize]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace CodeFirstDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [BasicAuthorize]
         public async Task<IActionResult> Create([Bind("DepartmentId,DepartmentName")] Department department)
         {
             if (ModelState.IsValid)
@@ -65,6 +67,7 @@ namespace CodeFirstDemo.Controllers
         }
 
         // GET: Departments/Edit/5
+        [BasicAuthorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +88,7 @@ namespace CodeFirstDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [BasicAuthorize]
         public async Task<IActionResult> Edit(int id, [Bind("DepartmentId,DepartmentName")] Department department)
         {
             if (id != department.DepartmentId)
@@ -116,6 +120,7 @@ namespace CodeFirstDemo.Controllers
         }
 
         // GET: Departments/Delete/5
+        [BasicAuthorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +141,7 @@ namespace CodeFirstDemo.Controllers
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [BasicAuthorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var department = await _context.Departments.SingleOrDefaultAsync(m => m.DepartmentId == id);

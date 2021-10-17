@@ -45,6 +45,7 @@ namespace CodeFirstDemo.Controllers
         }
 
         // GET: Employees/Create
+        [BasicAuthorize]
         public IActionResult Create()
         {
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentId");
@@ -56,6 +57,7 @@ namespace CodeFirstDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [BasicAuthorize]
         public async Task<IActionResult> Creates([Bind("EmployeeId,EmployeeName,EmployeeAge,DepartmentId")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -69,6 +71,7 @@ namespace CodeFirstDemo.Controllers
         }
 
         // GET: Employees/Edit/5
+        [BasicAuthorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,6 +93,7 @@ namespace CodeFirstDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [BasicAuthorize]
         public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,EmployeeName,EmployeeAge,DepartmentId")] Employee employee)
         {
             if (id != employee.EmployeeId)
@@ -122,6 +126,7 @@ namespace CodeFirstDemo.Controllers
         }
 
         // GET: Employees/Delete/5
+        [BasicAuthorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -143,6 +148,7 @@ namespace CodeFirstDemo.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [BasicAuthorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var employee = await _context.Employees.SingleOrDefaultAsync(m => m.EmployeeId == id);
